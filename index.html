@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Chronos - Premium Countdown</title>
+    
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <script src="script.js" defer></script>
+</head>
+<body class="font-body-lg text-body-lg min-h-screen overflow-x-hidden pb-32">
+
+    <header class="fixed top-0 w-full z-50 backdrop-blur-xl border-b border-outline-variant/30 bg-background/80">
+        <div class="flex items-center justify-between px-margin-mobile h-16 w-full max-w-screen-xl mx-auto">
+            <h1 class="font-headline-lg text-headline-lg text-primary tracking-tighter">Events</h1>
+            <div class="flex items-center gap-4">
+                <button class="hover:opacity-70 transition-opacity active:scale-95 text-primary"></button>
+                <button class="hover:opacity-70 transition-opacity active:scale-95 text-primary"></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 px-margin-mobile max-w-screen-xl mx-auto">
+        <section class="mb-stack-lg animate-in fade-in duration-700" id="hero-countdown">
+            <div class="flex flex-col items-center justify-center py-stack-lg text-center" id="active-event-display">
+                <h2 class="font-label-caps text-label-caps text-on-surface-variant mb-stack-sm tracking-widest" id="hero-title">SELECT AN EVENT</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-gutter mt-stack-md w-full max-w-2xl">
+                    <div class="flex flex-col items-center">
+                        <div class="flip-card w-full aspect-square flex items-center justify-center mb-2">
+                            <span class="font-display-countdown-mobile text-display-countdown-mobile md:font-display-countdown md:text-display-countdown text-primary" id="hero-days">00</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-outline">DAYS</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flip-card w-full aspect-square flex items-center justify-center mb-2">
+                            <span class="font-display-countdown-mobile text-display-countdown-mobile md:font-display-countdown md:text-display-countdown text-primary" id="hero-hours">00</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-outline">HOURS</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flip-card w-full aspect-square flex items-center justify-center mb-2">
+                            <span class="font-display-countdown-mobile text-display-countdown-mobile md:font-display-countdown md:text-display-countdown text-primary" id="hero-minutes">00</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-outline">MINUTES</span>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flip-card w-full aspect-square flex items-center justify-center mb-2">
+                            <span class="font-display-countdown-mobile text-display-countdown-mobile md:font-display-countdown md:text-display-countdown text-primary" id="hero-seconds">00</span>
+                        </div>
+                        <span class="font-label-caps text-[10px] text-outline">SECONDS</span>
+                    </div>
+                </div>
+                <div class="mt-4 font-headline-sm text-primary hidden" id="hero-status">🎉 Event Has Arrived!</div>
+            </div>
+        </section>
+
+        <section class="mt-stack-lg">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-stack-md gap-gutter">
+                <div class="relative w-full md:max-w-sm">
+                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+                    <input class="w-full bg-surface-container-low border border-outline-variant/30 rounded-lg py-3 pl-10 pr-4 text-body-sm focus:border-primary focus:ring-0 transition-all outline-none" id="event-search" placeholder="Search events..." type="text">
+                </div>
+                <div class="flex gap-2">
+                    <button class="px-4 py-2 bg-surface-container-high rounded-full text-label-caps hover:bg-outline-variant transition-colors" id="sort-closest">CLOSEST</button>
+                    <button class="px-4 py-2 bg-surface-container-high rounded-full text-label-caps hover:bg-outline-variant transition-colors" id="sort-az">A-Z</button>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter" id="event-list">
+                </div>
+        </section>
+    </main>
+
+    <button class="fixed bottom-24 right-margin-mobile w-14 h-14 bg-primary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-50" onclick="toggleModal(true)">
+        <span class="material-symbols-outlined" data-icon="add">add</span>
+    </button>
+
+    <nav class="fixed bottom-0 w-full z-50 pb-safe bg-background/80 backdrop-blur-xl border-t border-outline-variant/30">
+        <div class="flex justify-around items-center h-20 w-full">
+            <button class="flex flex-col items-center justify-center text-primary font-bold"></button>
+            <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors"></button>
+        </div>
+    </nav>
+
+    <div class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] hidden items-center justify-center p-gutter" id="modal-overlay">
+        <div class="glass-panel w-full max-w-md p-stack-lg rounded-xl animate-in zoom-in-95 duration-200">
+            <h3 class="font-headline-sm text-headline-sm text-primary mb-stack-md" id="modal-title">Add New Event</h3>
+            <div class="space-y-4">
+                <div>
+                    <label class="font-label-caps text-[10px] text-outline mb-1 block">EVENT NAME</label>
+                    <input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg py-3 px-4 text-primary focus:border-primary outline-none transition-all" id="input-name" placeholder="e.g. New Year's Eve" type="text">
+                </div>
+                <div>
+                    <label class="font-label-caps text-[10px] text-outline mb-1 block">DATE &amp; TIME</label>
+                    <input class="w-full bg-surface-container border border-outline-variant/30 rounded-lg py-3 px-4 text-primary focus:border-primary outline-none transition-all" id="input-date" type="datetime-local">
+                </div>
+                <div class="flex gap-3 pt-stack-md">
+                    <button class="flex-1 px-4 py-3 border border-outline-variant/30 text-on-surface-variant rounded-lg hover:bg-surface-container-high transition-colors" onclick="toggleModal(false)">Cancel</button>
+                    <button class="flex-1 px-4 py-3 bg-primary text-on-primary font-bold rounded-lg hover:opacity-90 active:scale-95 transition-all" id="save-event-btn">Save Event</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-32 left-1/2 -translate-x-1/2 z-[200] pointer-events-none space-y-2" id="toast-container"></div>
+
+</body>
+</html>

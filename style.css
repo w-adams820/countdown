@@ -1,0 +1,53 @@
+body { 
+    background-color: #131313; 
+    color: #e2e2e2; 
+    scroll-behavior: smooth; 
+    min-height: max(884px, 100dvh); 
+}
+
+.glass-panel { 
+    background: rgba(28, 28, 30, 0.6); 
+    backdrop-filter: blur(20px); 
+    border: 1px solid rgba(44, 44, 46, 0.5); 
+}
+
+.flip-card {  
+    position: relative;
+    background: linear-gradient(to bottom, #2C2C2E 0%, #1C1C1E 100%);
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+}
+
+.flip-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0,0,0,0.5);
+    z-index: 2;
+}
+
+.toast-enter { 
+    transform: translateY(100px); 
+    opacity: 0; 
+}
+
+.toast-active { 
+    transform: translateY(0); 
+    opacity: 1; 
+}
+ 
+::-webkit-scrollbar { 
+    width: 4px; 
+}
+
+::-webkit-scrollbar-track { 
+    background: #131313; 
+}
+
+::-webkit-scrollbar-thumb { 
+    background: #353535; 
+    border-radius: 10px; 
+}
